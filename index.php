@@ -48,7 +48,8 @@ $client->setScopes("https://www.googleapis.com/auth/androidpublisher");
 
 $service = new Google_Service_AndroidPublisher($client);
 
-$reviews = $service->reviews->listReviews($package)->getReviews();
+// Display 50 results instead of default 10 (display only from last week which is default)
+$reviews = $service->reviews->listReviews($package, $optParams = array('maxResults' => '50'))->getReviews();
 
 $feed_id = "http://example.com/php-google-play-store-reviews-rss-feed/".$_SERVER['HTTP_HOST']."/".$package;
 
